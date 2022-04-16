@@ -9,7 +9,8 @@ import json
 
 # chapter_dir = json.dumps(chapter,ensure_ascii=False)
 # print(chapter_dir)
-
-notice = {1:"公告测试公告测试公告测试",2:"公告测试公告测试公告测试"}
+title = "title"
+url = "url"
+notice = {1:{title:"高等代数",url:"www.baidu.com"},2:{title:"ch03.ppt",url:"www.baidu.com"}}
 notice_dir = json.dumps(notice,ensure_ascii=False)
 print(notice_dir)
