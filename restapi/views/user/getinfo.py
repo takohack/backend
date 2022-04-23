@@ -13,6 +13,8 @@ def getinfo(request):
         student = Student.objects.get(user=user)
         return JsonResponse({
             'result': "success",
-            'username': student.user.username,
+            'userid': student.user.username,
             'photo': student.photo,
+            'username': student.student_id,
+            'lesson' : student.student_choose_lesson
         })
