@@ -4,7 +4,6 @@ from restapi.models.user.student import Student
 
 def getinfo(request):
     user = request.user
-    print(user)
     if not user.is_authenticated:
         return JsonResponse({
             'result': "未登录"

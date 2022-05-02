@@ -11,17 +11,24 @@ def index(request):
 
 
 def get_comments(request):
-    print(cache.keys('*'))
-    # cache.set("comments", "wuhu",timeout=None)
-    if cache.has_key("comments"):
-        comments = cache.get("comments")
+    data = request.GET
+    if not data:
         return JsonResponse({
-        'result':comments
+        'result':"fail"
     })
     else:
-        return JsonResponse({
-        'result':"fali"
-    })
+        course_id = data.get('courseid')
+        redis_key = "comments" + str(course_id)
+        print(redis_key)
+        if cache.has_key(redis_key):
+            comments = cache.get(redis_key)
+            return JsonResponse({
+            'result':comments
+            })
+        else:
+            return JsonResponse({
+            'result':"fali"
+        })  
 
 def update_comments(request):
     data = request.GET
@@ -31,7 +38,9 @@ def update_comments(request):
     })
     else:
         comments = data.get('comments')
-        cache.set("comments",comments,timeout=None)
+        course_id = data.get('courseid')
+        redis_key = "comments" + str(course_id)
+        cache.set(redis_key,comments,timeout=None)
         return JsonResponse({
         'result':comments
     })
