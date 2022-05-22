@@ -55,21 +55,28 @@ class DisConsumer(WebsocketConsumer):
     def receive(self, text_data):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
-        print("收到了消息"+ message)
+        photo = text_data_json['photo']
+        name = text_data_json['name']
+        print("收到了消息"+ message +" "+ photo)
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'message': message
+                'message': message,
+                "user_photo":photo,
+                "name": name,
             }
         )
 
     # Receive message from room group
     def chat_message(self, event):
         message = event['message']
-
+        user_photo = event['user_photo']
+        name = event['name']
         # Send message to WebSocket
         self.send(text_data=json.dumps({
-            'message': message
+            'message': message,
+            'user_photo': user_photo,
+            'name': name,
         }))
