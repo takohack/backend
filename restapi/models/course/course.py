@@ -9,6 +9,9 @@ class Course(models.Model):
     teacherName = models.CharField(default="", max_length=50, blank=True, null=True)
     courseTerm  = models.CharField(default="", max_length=50, blank=True, null=True)
 
+    class Meta:
+        verbose_name = "课程管理"   
+        verbose_name_plural = verbose_name 
     def __str__(self):
         return str(self.courseName)
     

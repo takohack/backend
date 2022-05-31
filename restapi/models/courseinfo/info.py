@@ -8,5 +8,8 @@ class Info(models.Model):
     coursehomework = models.CharField(default="", max_length=200, blank=True, null=True)
     coursenotice = models.CharField(default="", max_length=200, blank=True, null=True)
     
+    class Meta:
+        verbose_name = "课程信息管理"   
+        verbose_name_plural = verbose_name 
     def __str__(self):
         return str(self.courseName)

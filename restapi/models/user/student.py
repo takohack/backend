@@ -10,6 +10,21 @@ class Student(models.Model):
     student_id = models.CharField(default="", max_length=50, blank=True, null=True)
     student_choose_lesson = models.CharField(default="", max_length=200, blank=True, null=True)
 
+    class Meta:
+        verbose_name = "学生管理"   
+        verbose_name_plural = verbose_name     
 
     def __str__(self):
-        return str(self.user)
+        return str(self.student_id)
+
+class Sign(models.Model):
+    user_name = models.CharField(default="", max_length=200, blank=True, null=True)
+    sign_time = models.CharField(default="", max_length=200, blank=True, null=True)
+    course = models.CharField(default="", max_length=200, blank=True, null=True)
+
+    class Meta:
+        verbose_name = "签到管理"   
+        verbose_name_plural = verbose_name 
+
+    def __str__(self):
+        return str("姓名: " + self.user_name + " 签到时间: "+ self.sign_time + " 签到课程: " + self.course)

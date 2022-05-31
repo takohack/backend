@@ -5,6 +5,7 @@ from restapi.views.user.login import signin
 from restapi.views.user.logout import signout
 from restapi.views.user.register import register
 from restapi.views.user.course import addcourse, delcourse
+from restapi.views.user.sign import sign
 
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path("logout",signout,name="logout"),
     path("register",register,name="register"),
     path("addcourse",addcourse,name="addcourse"),
-    path("delcourse",delcourse,name="delcourse")
+    path("delcourse",delcourse,name="delcourse"),
+    path("sign",sign,name="sign_name")
 ]
